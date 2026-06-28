@@ -592,7 +592,9 @@ ShinBoard.prototype.updateBonds = function() {
 		state.activeBondCodes = state.bondOrder.filter(function(bondCode) {
 			return activeBondCodes.indexOf(bondCode) >= 0;
 		});
-		state.lionElement = state.activeBondCodes.length ? SHIN_BOND_TO_ELEMENT[state.activeBondCodes[0]] : null;
+		if (state.activeBondCodes.length) {
+			state.lionElement = SHIN_BOND_TO_ELEMENT[state.activeBondCodes[0]];
+		}
 	}
 };
 
