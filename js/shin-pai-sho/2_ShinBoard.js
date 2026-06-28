@@ -450,7 +450,7 @@ ShinBoard.prototype.getMovementProfile = function(tile) {
 	}
 
 	if (tile.code === ShinTileCodes.Lotus) {
-		return { distance: 3, directions: 'all', canJump: false };
+		return { distance: 2, directions: 'all', canJump: false };
 	}
 
 	if (tile.code === ShinTileCodes.LionTurtle) {

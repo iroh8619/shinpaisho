@@ -507,7 +507,7 @@ ShinController.prototype.getTheMessage = function(tile, ownerName) {
 	} else if (tileCode === ShinTileCodes.Lotus) {
 		message.push('Spirit tile');
 		message.push('Deploy after your first Bond, in Raava or Vaatu Territory based on that Bond');
-		message.push('Moves up to 3 spaces');
+		message.push('Moves up to 2 spaces');
 		message.push('Cannot capture');
 	}
 
