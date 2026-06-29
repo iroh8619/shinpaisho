@@ -457,7 +457,7 @@ ShinBoard.prototype.getMovementProfile = function(tile) {
 		var playerState = this.getPlayerState(tile.ownerName);
 
 		if (!playerState.lionElement) {
-			return null;
+			return { distance: 1, directions: 'all', canJump: false };
 		}
 
 		return this.getMovementProfile({ code: SHIN_ELEMENT_TO_MASTER[playerState.lionElement] });
@@ -592,9 +592,7 @@ ShinBoard.prototype.updateBonds = function() {
 		state.activeBondCodes = state.bondOrder.filter(function(bondCode) {
 			return activeBondCodes.indexOf(bondCode) >= 0;
 		});
-		if (state.activeBondCodes.length) {
-			state.lionElement = SHIN_BOND_TO_ELEMENT[state.activeBondCodes[0]];
-		}
+		state.lionElement = state.activeBondCodes.length ? SHIN_BOND_TO_ELEMENT[state.activeBondCodes[0]] : null;
 	}
 };
 

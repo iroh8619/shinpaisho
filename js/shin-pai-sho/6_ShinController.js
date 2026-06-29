@@ -501,8 +501,8 @@ ShinController.prototype.getTheMessage = function(tile, ownerName) {
 	} else if (tileCode === ShinTileCodes.LionTurtle) {
 		message.push('Spirit tile');
 		message.push('Deploy in Spirit Wilds (forced once all Master tiles are on the board)');
-		message.push('Starts neutral and becomes elemental from your first active Bond');
-		message.push('Moves like the Master tile tied to its current element');
+		message.push('Starts neutral (1 space any direction). Becomes elemental from an active Bond');
+		message.push('When elemental, moves like the Master tile tied to its element. Loses element if Bond is broken');
 		message.push('Can capture Master tiles once both Lotuses are on the board');
 	} else if (tileCode === ShinTileCodes.Lotus) {
 		message.push('Spirit tile');
