@@ -805,6 +805,7 @@ ShinBoard.prototype.canCapture = function(boardPointStart, boardPointEnd) {
 	}
 
 	if (movingTile.code === ShinTileCodes.LionTurtle) {
+		if (!movingState.lionElement) return false;
 		return targetTile.isMasterTile();
 	}
 
