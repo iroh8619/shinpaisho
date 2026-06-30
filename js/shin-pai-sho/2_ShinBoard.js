@@ -460,7 +460,8 @@ ShinBoard.prototype.getMovementProfile = function(tile) {
 			return { distance: 1, directions: 'all', canJump: false };
 		}
 
-		return this.getMovementProfile({ code: SHIN_ELEMENT_TO_MASTER[playerState.lionElement] });
+		var masterProfile = this.getMovementProfile({ code: SHIN_ELEMENT_TO_MASTER[playerState.lionElement] });
+		return { distance: masterProfile.distance, directions: masterProfile.directions, canJump: false };
 	}
 
 	return null;
@@ -805,7 +806,7 @@ ShinBoard.prototype.canCapture = function(boardPointStart, boardPointEnd) {
 	}
 
 	if (movingTile.code === ShinTileCodes.LionTurtle) {
-		return targetTile.isMasterTile();
+		return targetTile.isMasterTile() || targetTile.isLionTurtle();
 	}
 
 	if (movingTile.isMasterTile()) {

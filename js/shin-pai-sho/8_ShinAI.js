@@ -208,6 +208,7 @@ ShinAI.prototype.scoreMoveMove = function(game, move) {
 	// --- Captures are very valuable ---
 	if (endBp.hasTile() && endBp.tile.ownerName === opp) {
 		s += 800;
+		if (endBp.tile.isLionTurtle()) s += 1500; // Removes opponent's only win condition
 		if (endBp.tile.isMasterTile()) s += 400; // Breaking bonds
 		if (endBp.tile.isFlowerTile()) s += 200;
 	}
