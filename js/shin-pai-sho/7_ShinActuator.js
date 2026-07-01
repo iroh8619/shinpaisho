@@ -34,6 +34,7 @@ ShinActuator.prototype.actuate = function(board, tileManager, markingManager, mo
 };
 
 ShinActuator.prototype.htmlify = function(board, tileManager, markingManager, moveToAnimate) {
+	this.currentBoard = board;
 	this.clearContainer(this.boardContainer);
 
 	if (this.arrowContainer) {
@@ -199,6 +200,36 @@ ShinActuator.prototype.addBoardPoint = function(boardPoint, moveToAnimate) {
 
 	if (boardPoint.hasTile()) {
 		theDiv.classList.add('hasTile');
+
+		var showGuidance = gameController && gameController.isRuleHintsEnabled && gameController.isRuleHintsEnabled();
+		var board = this.currentBoard;
+		if (showGuidance && board) {
+			var tile = boardPoint.tile;
+			var ownerState = board.getPlayerState(tile.ownerName);
+			var opp = tile.ownerName === HOST ? GUEST : HOST;
+
+			if (tile.isFlowerTile() || tile.isMasterTile()) {
+				var firstBond = ownerState.activeBondCodes && ownerState.activeBondCodes[0];
+				if (firstBond && (tile.code === firstBond || tile.code === SHIN_FLOWER_TO_MASTER[firstBond])) {
+					theDiv.classList.add('shinBond' + tile.ownerCode);
+				}
+			}
+
+			if (tile.isLionTurtle() && ownerState.lionElement) {
+				var oppLotus = board.findTilePoint(opp, ShinTileCodes.Lotus);
+				if (oppLotus && Math.abs(boardPoint.row - oppLotus.row) + Math.abs(boardPoint.col - oppLotus.col) === 1) {
+					theDiv.classList.add('shinWinThreat');
+				}
+			}
+
+			if (tile.isLotus()) {
+				var oppLT = board.findTilePoint(opp, ShinTileCodes.LionTurtle);
+				if (oppLT && board.getPlayerState(opp).lionElement &&
+						Math.abs(boardPoint.row - oppLT.row) + Math.abs(boardPoint.col - oppLT.col) === 1) {
+					theDiv.classList.add('shinLotusThreated');
+				}
+			}
+		}
 
 		var theImg = document.createElement('img');
 		theImg.elementStyleTransform = new ElementStyleTransform(theImg);

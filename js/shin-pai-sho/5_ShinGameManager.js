@@ -49,7 +49,12 @@ ShinGameManager.prototype.runNotationMove = function(move, withActuate) {
 
 		move.capturedTile = moveDetails.capturedTile;
 		if (moveDetails.capturedTile) {
-			this.tileManager.capturedTiles.push(moveDetails.capturedTile);
+			if (moveDetails.capturedTile.isLionTurtle()) {
+				this.tileManager.putTileBack(moveDetails.capturedTile);
+				this.board.getPlayerState(moveDetails.capturedTile.ownerName).lionTurtlePlayed = false;
+			} else {
+				this.tileManager.capturedTiles.push(moveDetails.capturedTile);
+			}
 		}
 		this.buildMoveGameLogText(move, moveDetails);
 	}

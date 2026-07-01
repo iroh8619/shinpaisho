@@ -723,6 +723,20 @@ figure > div {
   box-shadow: 0px 0px 2px 1px #87f;
 }
 
+/* Shin Pai Sho guidance highlights */
+.shinBondH {
+  box-shadow: 0px 0px 8px 4px #e8a020;
+}
+.shinBondG {
+  box-shadow: 0px 0px 8px 4px #9966dd;
+}
+.shinWinThreat {
+  box-shadow: 0px 0px 10px 5px #cc2222;
+}
+.shinLotusThreated {
+  box-shadow: 0px 0px 10px 5px #cc2222;
+}
+
 .tileBetweenHarmonyHOST.tileBetweenHarmonyGUEST{
   box-shadow: 0px 0px 2px 1px #77A2E6;
 }

@@ -2562,7 +2562,7 @@ var GameType = {
 		name: "Shin Pai Sho",
 		desc: "Shin Pai Sho",
 		color: "var(--shincolor)",
-		description: "Master momentum and timing to move your Elemental Lion Turtle adjacent to your opponent's Lotus.",
+		description: "Bond Flowers with Masters to grant your Lion Turtle an element, then guide it to your opponent's Lotus.",
 		coverImg: "shin.png",
 		rulesUrl: "https://docs.google.com/document/d/1ITusWBfYiYiQq36Kyml_dHGgZVYDu8AbeQTb0b5D7Jc/edit?usp=sharing",
 		gameOptions: []

@@ -179,7 +179,7 @@ ShinController.prototype.resetMove = function() {
 };
 
 ShinController.prototype.getDefaultHelpMessageText = function() {
-	return "<h4>Shin Pai Sho</h4><p>You win by moving your Elemental Lion Turtle adjacent to your opponent's Lotus.</p><p>On a turn, you may deploy, move, or capture a tile.</p><p>A Flower tile adjacent to its matching Master tile creates a Bond. Your first Bond determines your Lion Turtle's element.</p><p>Captures are only allowed once both Lotuses are on the board. Lion Turtle captures Masters and the opponent's Lion Turtle, Masters capture Flowers. Flowers and Lotus cannot capture.</p><p>Deploy Flowers and Masters in their territory. Lotus and Lion Turtle follow special deployment rules, see the <a href='https://docs.google.com/document/d/1ITusWBfYiYiQq36Kyml_dHGgZVYDu8AbeQTb0b5D7Jc/edit?usp=sharing' target='_blank'>rules PDF</a> for details.</p>";
+	return "<h4>Shin Pai Sho</h4><p>You win by moving your Elemental Lion Turtle adjacent to your opponent's Lotus.</p><p>On a turn, you may deploy, move, or capture a tile.</p><p>A Flower tile adjacent to its matching Master tile creates a Bond. Your first Bond determines your Lion Turtle's element.</p><p>Captures are only allowed once both Lotuses are on the board. Lion Turtle captures Masters and the opponent's Lion Turtle, Masters capture Flowers. Flowers and Lotus cannot capture. A captured Lion Turtle returns to its owner's reserve.</p><p>Deploy Flowers and Masters in their territory. Lotus and Lion Turtle follow special deployment rules, see the <a href='https://docs.google.com/document/d/1ITusWBfYiYiQq36Kyml_dHGgZVYDu8AbeQTb0b5D7Jc/edit?usp=sharing' target='_blank'>rules PDF</a> for details.</p>";
 };
 
 ShinController.prototype.togglePeekAtOpponentMoves = function() {
@@ -504,6 +504,7 @@ ShinController.prototype.getTheMessage = function(tile, ownerName) {
 		message.push('Starts neutral (1 space any direction). Becomes elemental from an active Bond');
 		message.push('When elemental, moves the same distance and direction as the Master tile tied to its element, but cannot jump. Loses element if Bond is broken');
 		message.push('Can capture Master tiles and the opponent\'s Lion Turtle once both Lotuses are on the board');
+		message.push('A captured Lion Turtle returns to its owner\'s reserve and can be redeployed');
 	} else if (tileCode === ShinTileCodes.Lotus) {
 		message.push('Spirit tile');
 		message.push('Deploy after your first Bond, in Raava or Vaatu Territory based on that Bond');
@@ -673,6 +674,7 @@ ShinController.prototype.toggleRuleHints = function() {
 		var onOrOff = this.isRuleHintsEnabled() ? "on" : "off";
 		div.innerHTML = "Game guidance are " + onOrOff + ": <span class='skipBonus' onclick='gameController.toggleRuleHints();'>toggle</span>";
 	}
+	this.theGame.actuate();
 	refreshMessage();
 };
 
